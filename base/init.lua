@@ -1,4 +1,7 @@
+require('view')
 require('search')
+require('scroll')
 require('tabs')
 require('panels')
 require('clipboard')
+require('noautocomment')
