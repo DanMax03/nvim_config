@@ -1,3 +1,3 @@
 require('lazy').setup({
-   { import = 'plugins/core.lua' },
+   require('plugins/core')
 })
