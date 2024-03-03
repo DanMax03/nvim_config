@@ -1,1 +1,1 @@
-require('common')
+require('keys/common')
