@@ -1,4 +1,6 @@
-function concat_tables (...)
+local M = {}
+
+function M.concat_tables (...)
    result = {}
 
    for _, table in ipairs(arg) do
@@ -11,3 +13,5 @@ function concat_tables (...)
 
    return result
 end
+
+return M:new()
