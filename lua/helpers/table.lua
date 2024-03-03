@@ -14,4 +14,4 @@ function M.concat_tables (...)
    return result
 end
 
-return M:new()
+return M
