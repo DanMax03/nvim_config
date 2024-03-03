@@ -1,2 +1,2 @@
-require('plugins/lazy_init.lua')
-require('plugins/lazy_run.lua')
+require('plugins/lazy_init')
+require('plugins/lazy_run')
