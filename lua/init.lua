@@ -1,3 +1,3 @@
 require('base')
--- require('keys')
+require('keys')
 -- require('plugins')
