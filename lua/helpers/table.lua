@@ -23,7 +23,7 @@ function M.concatTables(...)
       print(string.format('Type is %s and size is %d', type(t), M.getTableLength(t)))
       assert(type(t) == 'table', 'Every argument to concat_tables must be a table!')
 
-      for _, entry in ipairs(table) do
+      for _, entry in ipairs(t) do
          table.insert(result, entry)
       end
       
