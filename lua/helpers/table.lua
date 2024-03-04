@@ -11,7 +11,8 @@ function M.getTableLength(t)
 end
 
 function M.concatTables(...)
-   result = {}
+   local arg = {...}
+   local result = {}
 
    print('got into concatTables')
    print(string.format('arg count: %d', M.getTableLength(arg)))
