@@ -16,11 +16,9 @@ function M.concatTables(...)
 
    for _, t in ipairs(arg) do
       if M.getTableLength(t) == 0 then
-         print('skipping table')
          goto continue
-         print('this must never show up')
       end
-      print(string.format('Type is %s and size is %d', type(t), M.getTableLength(t)))
+
       assert(type(t) == 'table', 'Every argument to concat_tables must be a table!')
 
       for _, entry in ipairs(t) do
