@@ -12,7 +12,7 @@ return {
    },
    {
       'nvim-treesitter/nvim-treesitter',
-      build = ':TSUpdate' -- ensure that parsers are always updated
+      build = ':TSUpdate', -- ensure that parsers are always updated
       config = function()
          local configs = require('nvim-treesitter.configs')
 
