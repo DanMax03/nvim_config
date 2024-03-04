@@ -1,6 +1,16 @@
 local M = {}
 
-function M.concat_tables (...)
+function M.getTableLength(t)
+   local count = 0
+   
+   for _ in pairs(t) do
+      count = count + 1
+   end
+
+   return count
+end
+
+function M.concatTables(...)
    result = {}
 
    print('got into concat_tables')
