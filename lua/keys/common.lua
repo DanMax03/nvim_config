@@ -3,8 +3,9 @@ local map = vim.keymap.set
 local g = vim.g
 
 
--- Setting the map leader
+-- Setting the map leaders
 g.mapleader = " "
+g.maplocalleader = "\\"
 
 -- Mappings for copying to the system clipboard
 map("n", "<leader>y", "\"+y")
