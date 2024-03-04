@@ -15,8 +15,8 @@ function M.concatTables(...)
 
    print('got into concatTables')
 
-   for _, table in ipairs(arg) do
-      print('Iterating through tables...')
+   for i, table in ipairs(arg) do
+      print(string.format('Iterating through tables... %d', i))
       assert(type(elem) == 'table', 'Every argument to concat_tables must be a table!')
 
       for _, entry in ipairs(table) do
