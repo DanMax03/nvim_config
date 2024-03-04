@@ -13,12 +13,14 @@ end
 function M.concatTables(...)
    result = {}
 
-   print('got into concat_tables')
+   print('got into concatTables')
 
    for _, table in ipairs(arg) do
+      print('Iterating through tables...')
       assert(type(elem) == 'table', 'Every argument to concat_tables must be a table!')
 
       for _, entry in ipairs(table) do
+         print('    Iterating through table entries...')
          table.insert(result, entry)
       end
    end
