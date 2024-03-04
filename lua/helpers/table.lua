@@ -3,6 +3,8 @@ local M = {}
 function M.concat_tables (...)
    result = {}
 
+   print('got into concat_tables')
+
    for _, table in ipairs(arg) do
       assert(type(elem) == 'table', 'Every argument to concat_tables must be a table!')
 
