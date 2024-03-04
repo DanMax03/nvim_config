@@ -14,6 +14,7 @@ function M.concatTables(...)
    result = {}
 
    print('got into concatTables')
+   print(string.format('arg count: %d', M.getTableLength(arg)))
 
    for i, table in ipairs(arg) do
       print(string.format('Iterating through tables... %d', i))
