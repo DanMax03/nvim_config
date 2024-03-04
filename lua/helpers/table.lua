@@ -14,17 +14,18 @@ function M.concatTables(...)
    local arg = {...}
    local result = {}
 
-   print('got into concatTables')
-   print(string.format('arg count: %d', M.getTableLength(arg)))
+   for i, t in ipairs(arg) do
+      if M.getTableLength(t) == 0 then
+         goto continue
+      end
 
-   for i, table in ipairs(arg) do
-      print(string.format('Iterating through tables... %d', i))
       assert(type(elem) == 'table', 'Every argument to concat_tables must be a table!')
 
       for _, entry in ipairs(table) do
-         print('    Iterating through table entries...')
          table.insert(result, entry)
       end
+      
+      ::continue::
    end
 
    return result
