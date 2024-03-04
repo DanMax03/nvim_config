@@ -11,6 +11,22 @@ return {
       end
    },
    {
+      'nvim-treesitter/nvim-treesitter',
+      build = ':TSUpdate' -- ensure that parsers are always updated
+      config = function()
+         local configs = require('nvim-treesitter.configs')
+
+         configs.setup({
+            ensure_installed = {
+               "c", "lua", "vim", "vimdoc", "query", "python", "bash", "markdown", "markdown_inline", -- basic parsers, to override neovim-ones
+               "asm", "cmake", "cpp", "cuda", "dockerfile", "haskell", "html", "jsonc", "latex", "luadoc", "make"
+            },
+            sync_install = false,  -- do not install parsers synchronously
+            highlight = {enable = true}
+         })
+      end
+   },
+   {
       'nvim-neo-tree/neo-tree.nvim',
       branch = 'v3.x',
       dependencies = {
