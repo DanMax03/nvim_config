@@ -20,8 +20,8 @@ function M.concatTables(...)
          goto continue
          print('this must never show up')
       end
-
-      assert(type(elem) == 'table', 'Every argument to concat_tables must be a table!')
+      print(string.format('Type is %s and size is %d', type(t), M.getTableLength(t)))
+      assert(type(t) == 'table', 'Every argument to concat_tables must be a table!')
 
       for _, entry in ipairs(table) do
          table.insert(result, entry)
