@@ -4,7 +4,6 @@ local g = vim.g
 
 
 opt.smartcase = true
-opt.showmatch = true
 
-opt.hlsearch = false
+opt.hlsearch = true  -- highlight all search results
 opt.incsearch = true

@@ -4,11 +4,11 @@
 return {
    {
       'ShinKage/idris2-nvim',
-      lazy = false,  -- ensuring installation during startup
       dependencies = {
          'neovim/nvim-lspconfig',
          'MunifTanjim/nui.nvim'
       }
+      ft = "idr"
    }
 }
 
