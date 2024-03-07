@@ -28,6 +28,21 @@ return {
       end,
    },
    {
+      'folke/which-key.nvim',
+      event = 'VeryLazy',
+      opts = {
+         plugins = { spelling = true },
+         defaults = {
+            mode = { 'n', 'v' },
+         },
+      },
+      config = function(_, opts)
+         local wk = require('which-key')
+         wk.setup(opts)
+         wk.register(opts.defaults)
+      end,
+   }
+   {
       'nvim-neo-tree/neo-tree.nvim',
       branch = 'v3.x',
       dependencies = {
@@ -35,12 +50,13 @@ return {
          'nvim-tree/nvim-web-devicons',
          'MunifTanjim/nui.nvim'
       }
+      cmd = 'Neotree',
    },
    {
       'nvim-telescope/telescope.nvim',
       tag = '0.1.5',
       dependencies = { 'nvim-lua/plenary.nvim', 'BurntSushi/ripgrep' },
-      cmd = "Telescope",
+      cmd = 'Telescope',
       keys = {
          { '<leader>ff', '<cmd>Telescope find_files<cr>', mode = 'n' },
          { '<leader>fg', '<cmd>Telescope live_grep<cr>', mode = 'n' }
