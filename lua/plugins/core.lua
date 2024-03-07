@@ -26,10 +26,6 @@ return {
             highlight = {enable = true}
          })
       end,
-      keys = {
-         { '<leader>ff', '<cmd>Telescope find_files<cr>', mode = 'n' },
-         { '<leader>fg', '<cmd>Telescope live_grep<cr>', mode = 'n' }
-      }
    },
    {
       'nvim-neo-tree/neo-tree.nvim',
@@ -44,7 +40,11 @@ return {
       'nvim-telescope/telescope.nvim',
       tag = '0.1.5',
       dependencies = { 'nvim-lua/plenary.nvim', 'BurntSushi/ripgrep' },
-      cmd = "Telescope"
+      cmd = "Telescope",
+      keys = {
+         { '<leader>ff', '<cmd>Telescope find_files<cr>', mode = 'n' },
+         { '<leader>fg', '<cmd>Telescope live_grep<cr>', mode = 'n' }
+      }
    },
    {
       'ThePrimeagen/harpoon',
