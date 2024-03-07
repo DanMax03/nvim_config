@@ -30,6 +30,10 @@ return {
    {
       'folke/which-key.nvim',
       event = 'VeryLazy',
+      init = function()
+         vim.o.timeout = true
+         vim.o.timeoutlen = 300
+      end,
       opts = {
          plugins = { spelling = true },
          defaults = {
@@ -41,7 +45,7 @@ return {
          wk.setup(opts)
          wk.register(opts.defaults)
       end,
-   }
+   },
    {
       'nvim-neo-tree/neo-tree.nvim',
       branch = 'v3.x',
@@ -49,7 +53,7 @@ return {
          'nvim-lua/plenary.nvim',
          'nvim-tree/nvim-web-devicons',
          'MunifTanjim/nui.nvim'
-      }
+      },
       cmd = 'Neotree',
    },
    {
