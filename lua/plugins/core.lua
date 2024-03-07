@@ -25,7 +25,11 @@ return {
             sync_install = false,  -- do not install parsers synchronously
             highlight = {enable = true}
          })
-      end
+      end,
+      keys = {
+         { '<leader>ff', '<cmd>Telescope find_files', mode = 'n' },
+         { '<leader>fg', '<cmd>Telescope live_grep', mode = 'n' }
+      }
    },
    {
       'nvim-neo-tree/neo-tree.nvim',
