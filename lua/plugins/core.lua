@@ -27,8 +27,8 @@ return {
          })
       end,
       keys = {
-         { '<leader>ff', '<cmd>Telescope find_files', mode = 'n' },
-         { '<leader>fg', '<cmd>Telescope live_grep', mode = 'n' }
+         { '<leader>ff', '<cmd>Telescope find_files<cr>', mode = 'n' },
+         { '<leader>fg', '<cmd>Telescope live_grep<cr>', mode = 'n' }
       }
    },
    {
