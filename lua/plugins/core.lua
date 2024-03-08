@@ -118,7 +118,7 @@ return {
       'williamboman/mason.nvim',
       lazy = false,
       config = true,
-   }
+   },
    {
       'hrsh7th/nvim-cmp',
       dependencies = {
