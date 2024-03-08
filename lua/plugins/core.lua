@@ -115,6 +115,11 @@ return {
       end,
    },
    {
+      'williamboman/mason.nvim',
+      lazy = false,
+      config = true,
+   }
+   {
       'hrsh7th/nvim-cmp',
       dependencies = {
          'L3MON4D3/LuaSnip'
@@ -129,9 +134,11 @@ return {
    {
       'neovim/nvim-lspconfig',
       dependencies = {
-         'hrsh7th/cmp-nvim-lsp'
+         'hrsh7th/cmp-nvim-lsp',
+         'williamboman/mason-lspconfig.nvim',
       },
       event = { 'BufReadPre', 'BufNewFile' },
+      cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
       config = function()
          -- This is where all the LSP shenanigans will live
          local lsp_zero = require('lsp-zero')
@@ -143,14 +150,17 @@ return {
          end)
 
          -- Configuring LSs
-         local lsp_cfg = require('lspconfig')
-         local lua_opts = lsp_zero.nvim_lua_ls()
-         
-         lsp_cfg.lua_ls.setup(lua_opts)
+         require('mason-lspconfig').setup({
+            ensure_installed = {},
+            handlers = {
+               lsp_zero.default_setup,
+               lua_ls = function()
+                  local lua_opts = lsp_zero.nvim_lua_ls()
 
-         if g.is_idris2_setup then
-            lsp_cfg.idris2_lsp.setup()
-         end
+                  require('lspconfig').lua_ls.setup(lua_opts)
+               end,
+            }
+         })
       end
    },
 }
