@@ -1,5 +1,5 @@
 local g = vim.g
-local table_helper = require('helpers/table').table
+local table_helper = require('helpers').table
 
 
 local result = {}
