@@ -102,5 +102,55 @@ return {
          { '<leader>ut', '<cmd>UndotreeToggle<cr>',
            mode = 'n', desc = 'Toggle Undotree' },
       },
-   }
+   },
+   {
+      'VonHeikemen/lsp-zero.nvim',
+      branch = 'v3.x',
+      config = false,
+      init = function()
+         local g = vim.g
+
+         g.lsp_zero_extend_cmp = 0
+         g.lsp_zero_extend_lspconfig = 0
+      end,
+   },
+   {
+      'hrsh7th/nvim-cmp',
+      dependencies = {
+         'L3MON4D3/LuaSnip'
+      },
+      event = 'InsertEnter',
+      config = function()
+         local lsp_zero = require('lsp-zero')
+
+         lsp_zero.extend_cmp()
+      end,
+   },
+   {
+      'neovim/nvim-lspconfig',
+      dependencies = {
+         'hrsh7th/cmp-nvim-lsp'
+      },
+      event = { 'BufReadPre', 'BufNewFile' },
+      config = function()
+         -- This is where all the LSP shenanigans will live
+         local lsp_zero = require('lsp-zero')
+
+         lsp_zero.extend_lspconfig()
+
+         lsp_zero.on_attach(function(client, bufnr)
+            lsp_zero.default_keymaps({ buffer = bufnr })
+         end)
+
+         -- Configuring LSs
+         local lsp_cfg = require('lspconfig')
+         local lua_opts = lsp_zero.nvim_lua_ls()
+         
+         lsp_cfg.lua_ls.setup(lua_opts)
+
+         if g.is_idris2_setup then
+            lsp_cfg.idris2_lsp.setup()
+         end
+      end
+   },
 }
