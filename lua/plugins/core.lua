@@ -151,7 +151,7 @@ return {
 
          -- Configuring LSs
          require('mason-lspconfig').setup({
-            ensure_installed = {},
+            ensure_installed = { "bashls", "clangd", "lua_ls", "rnix" },
             handlers = {
                lsp_zero.default_setup,
                lua_ls = function()
