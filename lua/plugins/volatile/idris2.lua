@@ -7,7 +7,7 @@ return {
       dependencies = {
          'neovim/nvim-lspconfig',
          'MunifTanjim/nui.nvim'
-      }
+      },
       ft = "idr"
    }
 }
