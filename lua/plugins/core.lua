@@ -56,7 +56,7 @@ return {
       },
       init = function()
          vim.api.nvim_create_autocmd('BufEnter', {
-            group = vim.api.nvim_create_autogroup('NeoTreeInit', {clear = true}),
+            group = vim.api.nvim_create_augroup('NeoTreeInit', {clear = true}),
             callback = function()
                local f = vim.fn.expand('%:p')
 
