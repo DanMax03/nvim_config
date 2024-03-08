@@ -5,7 +5,7 @@ local table_helper = require('helpers/table').table
 local result = {}
 
 local function addPlugin (require_path)
-   result = table_helper.concat_tables(result, require(require_path))
+   result = table_helper.concatTables(result, require(require_path))
 end
 
 
