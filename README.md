@@ -6,6 +6,7 @@
  - Configure idris2
    - Add ftplugin
  - Make keymappings
+   - Somehow divide plugin configurations from lazy mappings
 
 ### My knowledge
 
