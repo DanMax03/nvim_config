@@ -65,7 +65,7 @@ return {
          { '<leader>ff', '<cmd>Telescope find_files<cr>',
            mode = 'n', desc = 'Telescope find files' },
          { '<leader>fg', '<cmd>Telescope live_grep<cr>',
-           mode = 'n', desc = 'Telescope live grep' }
+           mode = 'n', desc = 'Telescope live grep' },
       }
    },
    {
@@ -74,5 +74,9 @@ return {
    },
    {
       'mbbill/undotree'
+      keys = {
+         { '<leader>ut', '<cmd>UndotreeToggle<cr>',
+           mode = 'n', desc = 'Toggle Undotree' },
+      },
    }
 }
