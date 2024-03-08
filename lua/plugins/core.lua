@@ -151,7 +151,16 @@ return {
 
          -- Configuring LSs
          require('mason-lspconfig').setup({
-            ensure_installed = { "bashls", "clangd", "lua_ls" },
+            ensure_installed = (function()
+               if vim.g.is_nix_package then
+                  --  Most of LS won't work on NixOS
+                  --  due to dependency on /lib64/ld-linux.so
+                  --  Visit https://nixos.wiki/wiki/Packaging/Binaries
+                  return { "bashls" }
+               else
+                  return { "bashls", "clangd", "lua_ls" }
+               end
+            end)(),
             handlers = {
                lsp_zero.default_setup,
                lua_ls = function()
