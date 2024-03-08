@@ -62,8 +62,10 @@ return {
       dependencies = { 'nvim-lua/plenary.nvim', 'BurntSushi/ripgrep' },
       cmd = 'Telescope',
       keys = {
-         { '<leader>ff', '<cmd>Telescope find_files<cr>', mode = 'n' },
-         { '<leader>fg', '<cmd>Telescope live_grep<cr>', mode = 'n' }
+         { '<leader>ff', '<cmd>Telescope find_files<cr>',
+           mode = 'n', desc = 'Telescope find files' },
+         { '<leader>fg', '<cmd>Telescope live_grep<cr>',
+           mode = 'n', desc = 'Telescope live grep' }
       }
    },
    {
