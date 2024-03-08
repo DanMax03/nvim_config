@@ -73,7 +73,7 @@ return {
       dependencies = { 'nvim-lua/plenary.nvim' }
    },
    {
-      'mbbill/undotree'
+      'mbbill/undotree',
       keys = {
          { '<leader>ut', '<cmd>UndotreeToggle<cr>',
            mode = 'n', desc = 'Toggle Undotree' },
