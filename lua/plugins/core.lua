@@ -39,6 +39,7 @@ return {
          defaults = {
             mode = { 'n', 'v' },
          },
+         triggers = { '<leader>', '<localleader>' }
       },
       config = function(_, opts)
          local wk = require('which-key')
