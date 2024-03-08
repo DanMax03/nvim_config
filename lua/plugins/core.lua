@@ -150,9 +150,10 @@ return {
          end)
 
          -- Configuring LSs
+         -- Automatic LSs via Mason. Mostly doesn't work on NixOS
          require('mason-lspconfig').setup({
             ensure_installed = (function()
-               if vim.g.is_nix_package then
+              if vim.g.is_nix_package then
                   --  Most of LS won't work on NixOS
                   --  due to dependency on /lib64/ld-linux.so
                   --  Visit https://nixos.wiki/wiki/Packaging/Binaries
@@ -168,6 +169,44 @@ return {
 
                   require('lspconfig').lua_ls.setup(lua_opts)
                end,
+            }
+         })
+         
+         if not vim.g.is_nix_package then
+            return
+         end
+
+         local lspcfg = require('lspconfig')
+
+         lspcfg.lua_ls.setup({
+            on_init = function(client)
+               local path = client.workspace_folders[1].name
+
+               if vim.loop.fs_stat(path..'/.luarc.json')
+                  or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+                  return
+               end
+
+               client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+                  runtime = {
+                     version = 'LuaJIT'
+                  },
+                  workspace = {
+                     checkThirdParty = false,
+                     library = {
+                        vim.env.VIMRUNTIME
+                     }
+                  }
+               })
+            end,
+            settings = {
+               Lua = {}
+            }
+         })
+
+         lspcfg.clangd.setup({
+            capabilities = {
+               offsetEncoding = 'utf-8'
             }
          })
       end
