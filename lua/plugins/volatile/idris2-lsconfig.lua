@@ -44,6 +44,14 @@ local function idris2_on_attach (client)
    nmapn('<localleader>z', vim.diagnostic.goto_prev, 'Goto prev')
 end
 
+-- Idris2 LS is a somewhat Idris2 compiler
+-- which is connected via LSP. So, to make it
+-- analyze, we must save the file and the compiler
+-- will see the changes
+local function save_hook (action)
+   vim.cmd.write({ silent = true })
+end
+
 
 return {
    client = {
@@ -62,7 +70,7 @@ return {
    },
 
    -- Function to execute after a code action is performed
-   -- code_action_post_hook = save_hook,
+   code_action_post_hook = save_hook,
 
    -- Set default highlight groups for semantic tokens
    -- use_default_semantic_hl_groups = false,
