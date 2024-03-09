@@ -7,7 +7,7 @@ local function idris2_on_attach (client)
 
    local general = require('idris2')
    local hover = require('idris2.hover')
-   local action = require('idris2.action')
+   local action = require('idris2.code_action')
 
    nmapn('<localleader>j', vim.lsp.buf.definition, 'Buffer definition')
    nmapn('<cr>', hover.close_split, 'Close split')
