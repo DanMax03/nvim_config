@@ -49,7 +49,7 @@ end
 -- analyze, we must save the file and the compiler
 -- will see the changes
 local function save_hook (action)
-   vim.cmd.write({ silent = true })
+   vim.cmd.write({ mods = { silent = true } })
 end
 
 
