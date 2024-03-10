@@ -169,7 +169,11 @@ return {
 
    -- Options passed to lspconfig idris2 configuration
    server = {
-      on_attach = idris2_on_attach
+      on_attach = idris2_on_attach,
+      init_options = {
+         logFile = '/dev/null',
+         logSeverity = 'Info',
+      },
    },
 
    -- Function to execute after a code action is performed
