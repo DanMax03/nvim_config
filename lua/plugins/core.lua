@@ -48,6 +48,22 @@ return {
       end,
    },
    {
+      'rcarriga/nvim-notify',
+      lazy = false,
+      opts = {
+         timeout = 700,
+         stages = 'slide',
+         render = 'wrapped-compact',
+         top_down = false,
+      },
+      config = function(_, opts)
+         local notify_plugin = require('notify')
+
+         notify_plugin.setup(opts)
+         vim.notify = notify_plugin
+      end,
+   },
+   {
       'nvim-neo-tree/neo-tree.nvim',
       branch = 'v3.x',
       dependencies = {
