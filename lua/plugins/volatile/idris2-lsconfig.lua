@@ -1,12 +1,14 @@
 local function idris2_write (str, colour)
-   vim.api.nvim_echo({ { text = str, hl_group = colour } })
-   vim.api.nvim_echo(vim.cmd('a:str, "\n$", "", ""'))
-   -- probably need to add echohl None here
+   local str_no_endline = vim.fn.substitute(str, '\\n$', '', '')
+
+   vim.cmd.echohl(colour)
+   vim.cmd.echo('"' .. str_no_endline .. '"')
+   vim.cmd.echohl('None')
 end
 
 
 local function idris2_reload ()
-   vim.cmd.w()
+   vim.cmd.write()
 
    local file = vim.fn.expand('%:p')
    local tc = vim.fn.system('idris2 --no-colour --find-ipkg ' .. vim.fn.shellescape(file) .. ' --client ""')
@@ -23,7 +25,7 @@ end
 
 local function idris2_command (...)
    local arg = { ... }
-   local idriscmd = vim.fn.shellescape(arg, '')
+   local idriscmd = vim.fn.shellescape(table.concat(arg, ' '))
    local file = vim.fn.expand('%:p')
    return vim.fn.system('idris2 --no-color --find-ipkg ' .. vim.fn.shellescape(file) .. ' --client ' .. idriscmd)
 end
@@ -46,7 +48,7 @@ end
 
 
 local function idris2_show_type ()
-   vim.cmd.w()
+   vim.cmd.write()
 
    local word = idris2_current_query_object()
    local ty = idris2_command(':t', word)
@@ -58,7 +60,7 @@ end
 local function idris2_trivial_proof_search ()
    local view = vim.fn.winsaveview()
 
-   vim.cmd.w()
+   vim.cmd.write()
 
    local cline = vim.fn.line('.')
    local word = idris2_current_query_object()
@@ -67,7 +69,7 @@ local function idris2_trivial_proof_search ()
    if result ~= '' then
       idris2_write(result, 'DiagnosticWarn')
    else
-      vim.cmd.e()
+      vim.cmd.edit()
       -- e  -- move to the end of the word
       vim.fn.winrestview(view)
    end
@@ -75,7 +77,7 @@ end
 
 
 local function idris2_case_split ()
-   vim.cmd.w()
+   vim.cmd.write()
 
    local view = vim.fn.winsaveview()
    local curr_line = vim.fn.line('.')
@@ -86,7 +88,7 @@ local function idris2_case_split ()
    if result ~= '' then
       idris2_write(result, 'DiagnosticWarn')
    else
-      vim.cmd.e()
+      vim.cmd.edit()
       vim.fn.winrestview(view)
    end
 end
