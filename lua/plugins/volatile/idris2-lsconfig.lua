@@ -1,3 +1,97 @@
+local function idris2_write (str, colour)
+   vim.api.nvim_echo({ { text = str, hl_group = colour } })
+   vim.api.nvim_echo(vim.cmd('a:str, "\n$", "", ""'))
+   -- probably need to add echohl None here
+end
+
+
+local function idris2_reload ()
+   vim.cmd.w()
+
+   local file = vim.fn.expand('%:p')
+   local tc = vim.fn.system('idris2 --no-colour --find-ipkg ' .. vim.fn.shellescape(file) .. ' --client ""')
+
+   if tc ~= '' then
+      idris2_write(tc, 'DiagnosticWarn')
+   else
+      idris2_write('Successfully reloaded ' .. file, 'LspSemantic_enumMember')
+   end
+
+   return tc
+end
+
+
+local function idris2_command (...)
+   local arg = { ... }
+   local idriscmd = vim.fn.shellescape(arg, '')
+   local file = vim.fn.expand('%:p')
+   return vim.fn.system('idris2 --no-color --find-ipkg ' .. vim.fn.shellescape(file) .. ' --client ' .. idriscmd)
+end
+
+
+-- Get the text near cursor position.
+-- It's a refinement of 'expand(<cword>)'
+-- to accomodate differences between
+-- a (n)vim word and what Idris requires
+local function idris2_current_query_object ()
+   local word = vim.fn.expand('<cword>')
+
+   -- Cutting off '?' that introduces a hole
+   if string.find(word, '^%?') ~= nil then
+      word = string.sub(word, 2)
+   end
+
+   return word
+end
+
+
+local function idris2_show_type ()
+   vim.cmd.w()
+
+   local word = idris2_current_query_object()
+   local ty = idris2_command(':t', word)
+
+   idris2_write(ty, 'Comment')
+end
+
+
+local function idris2_trivial_proof_search ()
+   local view = vim.fn.winsaveview()
+
+   vim.cmd.w()
+
+   local cline = vim.fn.line('.')
+   local word = idris2_current_query_object()
+   local result = idris2_command(':ps!', cline, word, '')
+
+   if result ~= '' then
+      idris2_write(result, 'DiagnosticWarn')
+   else
+      vim.cmd.e()
+      -- e  -- move to the end of the word
+      vim.fn.winrestview(view)
+   end
+end
+
+
+local function idris2_case_split ()
+   vim.cmd.w()
+
+   local view = vim.fn.winsaveview()
+   local curr_line = vim.fn.line('.')
+   local curr_col = vim.fn.col('.')
+   local word = vim.fn.expand('<cword>')
+   local result = idris2_command(':cs!', curr_line, curr_col, word)
+
+   if result ~= '' then
+      idris2_write(result, 'DiagnosticWarn')
+   else
+      vim.cmd.e()
+      vim.fn.winrestview(view)
+   end
+end
+
+
 local function idris2_on_attach (client)
    local map = vim.keymap.set
    -- Prefix for noremap, suffix for normal mode
@@ -18,7 +112,7 @@ local function idris2_on_attach (client)
    nmapn('<localleader>y', function ()
       hover.close_split()
       vim.lsp.buf.hover()
-   end)
+   end, 'Close split + Hover')
    nmapn('<localleader>h', vim.lsp.buf.signature_help, 'Signature help')
 
    nmapn('<localleader>i', general.show_implicits, 'Show implicits')
@@ -42,6 +136,13 @@ local function idris2_on_attach (client)
 
    nmapn('<localleader>x', vim.diagnostic.goto_next, 'Goto next')
    nmapn('<localleader>z', vim.diagnostic.goto_prev, 'Goto prev')
+
+   nmapn('<localleader>r', idris2_reload, 'Brady\'s Reload')
+   nmapn('<localleader>o', idris2_trivial_proof_search, 'Brady\'s Trivial Proof Search')
+   nmapn('<localleader>t', idris2_show_type, 'Brady\'s Show Type')
+   nmapn('<localleader>T', idris2_show_type, 'Brady\'s Show Type')
+   nmapn('<localleader>c', idris2_case_split, 'Brady\'s Case Split')
+   nmapn('<localleader>C', idris2_case_split, 'Brady\'s Case Split')
 end
 
 -- Idris2 LS is a somewhat Idris2 compiler
