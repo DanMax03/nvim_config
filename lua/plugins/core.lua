@@ -191,6 +191,7 @@ return {
 
          -- Idris2 LS
          if vim.g.is_idris2_setup then
+            vim.lsp.set_log_level('OFF')
             require('idris2').setup(require('plugins/volatile/idris2-lsconfig'))
          end
          
