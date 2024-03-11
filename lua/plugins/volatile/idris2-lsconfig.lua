@@ -141,9 +141,9 @@ local function idris2_on_attach (client)
 
    nmapn('<localleader>r', idris2_reload, 'Brady\'s Reload')
    nmapn('<localleader>o', idris2_trivial_proof_search, 'Brady\'s Trivial Proof Search')
-   nmapn('<localleader>t', idris2_show_type, 'Brady\'s Show Type')
+   -- nmapn('<localleader>t', idris2_show_type, 'Brady\'s Show Type')
    nmapn('<localleader>T', idris2_show_type, 'Brady\'s Show Type')
-   nmapn('<localleader>c', idris2_case_split, 'Brady\'s Case Split')
+   -- nmapn('<localleader>c', idris2_case_split, 'Brady\'s Case Split')
    nmapn('<localleader>C', idris2_case_split, 'Brady\'s Case Split')
 end
 
