@@ -174,9 +174,9 @@ return {
                   --  Most of LS won't work on NixOS
                   --  due to dependency on /lib64/ld-linux.so
                   --  Visit https://nixos.wiki/wiki/Packaging/Binaries
-                  return { "bashls", "pylsp" }
+                  return { "bashls" }
                else
-                  return { "bashls", "clangd", "lua_ls" }
+                  return { "bashls", "pylsp", "clangd", "lua_ls" }
                end
             end)(),
             handlers = {
@@ -199,6 +199,8 @@ return {
          end
 
          local lspcfg = require('lspconfig')
+
+         lspcfg.pylsp.setup({})
 
          lspcfg.lua_ls.setup({
             on_init = function(client)
