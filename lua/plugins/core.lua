@@ -174,7 +174,7 @@ return {
                   --  Most of LS won't work on NixOS
                   --  due to dependency on /lib64/ld-linux.so
                   --  Visit https://nixos.wiki/wiki/Packaging/Binaries
-                  return { "bashls" }
+                  return { "bashls", "pylsp" }
                else
                   return { "bashls", "clangd", "lua_ls" }
                end
