@@ -2,7 +2,7 @@ local function idris2_write (str, colour)
    local str_no_endline = vim.fn.substitute(str, '\\n$', '', '')
 
    vim.cmd.echohl(colour)
-   vim.cmd.echo('"' .. str_no_endline .. '"')
+   vim.cmd.echo('"' .. str_no_endline .. '"') -- todo: handle quotes in str
    vim.cmd.echohl('None')
 end
 
