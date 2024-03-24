@@ -3,14 +3,14 @@
 ## TODO
 
 ### Configuration
- - Configure idris2
-   - Add ftplugin
  - Make keymappings
    - Somehow divide plugin configurations from lazy mappings
+   - Add keymappings
+     - Removing nearest pair of parentheses or brackets
+     - Moving visual block up or down
 
 ### My knowledge
 
- - Learn keymappings
  - Choose an approach for keymappings:
    1. Global: mappings doesn't contain any prefix depending on the plugin
    2. Local: mappings does contain prefixes that match their name
