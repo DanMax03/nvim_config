@@ -5,5 +5,5 @@ local g = vim.g
 
 opt.smartcase = true
 
-opt.hlsearch = true  -- highlight all search results
-opt.incsearch = true
+opt.hlsearch = false
+opt.incsearch = true  -- it will outline the result when I do search
