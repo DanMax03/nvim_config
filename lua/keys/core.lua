@@ -18,9 +18,9 @@ vim.api.nvim_create_user_command('DiagnosticToggle', function()
    local vt_flag_str = ''
 
    if vt_flag then
-      vt_flag_str = 'on'
-   else
       vt_flag_str = 'off'
+   else
+      vt_flag_str = 'on'
    end
 
    vim.notify(string.format('Diagnostic is %s', vt_flag_str), vim.log.levels.INFO)
