@@ -20,7 +20,7 @@ return {
          configs.setup({
             ensure_installed = {
                "c", "lua", "vim", "vimdoc", "query", "python", "bash", "markdown", "markdown_inline",  -- basic parsers, to override neovim-ones
-               "asm", "cmake", "cpp", "cuda", "dockerfile", "haskell", "html", "jsonc", "latex", "luadoc", "make"
+               "asm", "cmake", "cpp", "cuda", "dockerfile", "haskell", "html", "jsonc", "luadoc", "make"
             },
             sync_install = false,  -- do not install parsers synchronously
             highlight = {enable = true}
@@ -35,17 +35,12 @@ return {
          vim.o.timeoutlen = 300
       end,
       opts = {
-         plugins = { spelling = true },
-         defaults = {
-            mode = { 'n', 'v' },
-         },
-         triggers = { '<leader>', '<localleader>' }
+         plugins = { spelling = { enabled = true, suggestions = 20 } },
+         triggers = {
+            { '<leader>', mode = { "n", "v" } },
+            { '<localleader>', mode = { "n", "v" } },
+         }
       },
-      config = function(_, opts)
-         local wk = require('which-key')
-         wk.setup(opts)
-         wk.register(opts.defaults)
-      end,
    },
    {
       'rcarriga/nvim-notify',
