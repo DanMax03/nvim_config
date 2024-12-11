@@ -11,6 +11,10 @@ return {
       end
    },
    {
+      'sphamba/smear-cursor.nvim',
+      opts = {},
+   },
+   {
       'nvim-treesitter/nvim-treesitter',
       lazy = false,
       build = ':TSUpdate',  -- ensure that parsers are always updated
