@@ -13,6 +13,10 @@ return {
    {
       'sphamba/smear-cursor.nvim',
       opts = {},
+      config = function(_, opts)
+         local plugin = require('smear_cursor')  -- TODO: why underscore????
+         plugin.setup(opts)
+      end
    },
    {
       'nvim-treesitter/nvim-treesitter',
