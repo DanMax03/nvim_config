@@ -12,7 +12,11 @@ return {
    },
    {
       'sphamba/smear-cursor.nvim',
-      opts = {},
+      lazy = false,
+      opts = {
+         trailing_stiffness = 0.3,
+         slowdown_exponent = -0.1
+      },
       config = function(_, opts)
          local plugin = require('smear_cursor')  -- TODO: why underscore????
          plugin.setup(opts)
