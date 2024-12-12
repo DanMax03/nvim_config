@@ -24,6 +24,7 @@ return {
    },
    {
       'nvim-treesitter/nvim-treesitter',
+      commit = '65310b6',
       lazy = false,
       build = ':TSUpdate',  -- ensure that parsers are always updated
       config = function()
