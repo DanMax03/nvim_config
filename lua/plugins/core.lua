@@ -39,7 +39,8 @@ return {
                "asm", "cmake", "cpp", "cuda", "dockerfile", "haskell", "html", "jsonc", "luadoc", "make"
             },
             sync_install = false,  -- do not install parsers synchronously
-            highlight = {enable = true}
+            highlight = { enable = true },
+            indent = { enable = false }
          })
       end,
    },
